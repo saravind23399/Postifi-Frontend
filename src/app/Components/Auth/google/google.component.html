@@ -1,1 +1,1 @@
-<button (click)="signInWithGoogle()">Click</button>
+<button *ngIf="providers.length != 0" (click)="signInWithGoogle()">Click</button>
