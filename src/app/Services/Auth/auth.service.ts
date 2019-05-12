@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AppService } from '../App/app.service';
@@ -14,8 +14,8 @@ export class AuthService {
 
   checkGoogleIdToken(idToken: string) {
     const body = { idToken: idToken };
-    const headers = new Headers();
+    const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.post(this.appService.resolveBackendUrl('/auth/google/resolveToken'), body).pipe(map(res => res, { 'headers': headers }));
+    return this.http.post(this.appService.resolveBackendUrl('/auth/google/resolveToken'),body,{headers: headers, observe: 'response'})
   }
 }
