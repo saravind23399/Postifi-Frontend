@@ -14,6 +14,7 @@ import { AuthService } from 'src/app/Services/Auth/auth.service';
 export class GoogleComponent implements OnInit {
   user: SocialUser
   providers: Array<any>
+  idToken: string
 
   constructor(private googleAuthService: googleAuthService, private authService: AuthService) { }
 
@@ -22,6 +23,7 @@ export class GoogleComponent implements OnInit {
       this.providers = response
     })
     this.googleAuthService.authState.subscribe((user) => {
+      this.idToken = user.idToken
       this.authService.checkGoogleIdToken(user.idToken).subscribe((response: any) => {
         console.log(response)
       }, (error)=>{

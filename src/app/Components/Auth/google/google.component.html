@@ -1,1 +1,5 @@
-<button *ngIf="providers.length != 0" (click)="signInWithGoogle()">Click</button>
+<button *ngIf="providers.length != 0" class="btn btn-primary btn-pill" (click)="signInWithGoogle()">Click</button>
+<br />
+<span>
+    {{this.idToken}}
+</span>
